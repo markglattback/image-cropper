@@ -1,33 +1,167 @@
+:root {
+  --scoutPurple: #7413dc;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  width: 100vw;
+  height: 100vh;
+}
+
+.image-display {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  background: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #aaa;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+}
+
+form {
+  display: block;
+  text-align: left;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+input {
+  display: block;
+  font-size: 1rem;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #aaa;
+}
+
+.cropped-image {
+  display: block;
+  margin: 0 0 15px 0;
+}
+
+button {
+  display: block;
+  margin: 15px 0;
+  padding: 8px 15px;;
+  font-size: 1rem;
+  font-family: 'Nunito Sans', sans-serif;
+  background: var(--scoutPurple);
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.Dropbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  color: lightgrey;
+  border-radius: 15%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.Dropbox--active {
+  color: var(--scoutPurple);
+}
+
+/* NProgress */
+/* Make clicks pass-through */
+#nprogress {
   pointer-events: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#nprogress .bar {
+  background: var(--scoutPurple);
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  /* box-shadow: 0 0 10px var(--scoutPurple), 0 0 5px var(--scoutPurple); */
+  opacity: 1.0;
+
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+      -ms-transform: rotate(3deg) translate(0px, -4px);
+          transform: rotate(3deg) translate(0px, -4px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: var(--scoutPurple);
+  border-left-color: var(--scoutPurple);
+  border-radius: 50%;
+
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+          animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0%   { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

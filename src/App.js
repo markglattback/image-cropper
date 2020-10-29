@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import DropBox from './components/DropBox';
+import CroppedImage from './components/CroppedImage';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  
+  state = {
+    isActive: false,
+    showImages: false,
+    url: '',
+    thumbURL: '',
+  }
+
+  handleFileDrop = (url, thumbURL) => {
+    this.setState({
+      url,
+      thumbURL, 
+      showImages: true,
+    });
+  }
+
+  handleReset = () => {
+    this.setState({
+      isActive: false,
+      showImages: false,
+      url: '',
+      thumbURL: '',
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <main>
+          {!this.state.showImages && <DropBox updateParent={this.handleFileDrop} />}
+          {this.state.showImages && <CroppedImage url={this.state.url} thumbnail={this.state.thumbURL} reset={this.handleReset}/>}          
+        </main>
+      </div>
+    );
+  };
 }
 
 export default App;
